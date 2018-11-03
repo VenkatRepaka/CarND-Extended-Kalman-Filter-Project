@@ -55,6 +55,8 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     * update the state by using Extended Kalman Filter equations
   */
   // Lecture EKF generalization equations
+
+  // From lecture Radar Measurements # Definition of Radar Variables
   float rho = sqrt(x_(0)*x_(0) + x_(1)*x_(1));
   float phi = atan2(x_(1), x_(0));
   float rho_dot;
@@ -68,6 +70,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   VectorXd y = z - h;
 
   // Normalize angle
+  // Same formula as deriving phi as above
   y(1) = atan2(sin(y(1)), cos(y(1)));
   
   MatrixXd Ht = H_.transpose();
